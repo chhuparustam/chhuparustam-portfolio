@@ -1,0 +1,113 @@
+/* CyberBackground — fixed decorative layers. All pointer-events
+   none, negative z-index above body's own washes. */
+
+.cyber-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cyber-bg__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, black 20%, transparent 80%);
+}
+
+.cyber-bg__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+}
+
+.cyber-bg__glow--purple {
+  width: 560px;
+  height: 560px;
+  top: -180px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.16), transparent 65%);
+}
+
+.cyber-bg__glow--blue {
+  width: 480px;
+  height: 480px;
+  top: 22%;
+  left: -180px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.08), transparent 65%);
+}
+
+.cyber-bg__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.5;
+}
+
+.cyber-bg__orb--one {
+  width: 340px;
+  height: 340px;
+  top: 38%;
+  right: 6%;
+  background: rgba(139, 92, 246, 0.1);
+}
+
+.cyber-bg__orb--two {
+  width: 260px;
+  height: 260px;
+  top: 64%;
+  left: 10%;
+  background: rgba(56, 189, 248, 0.07);
+}
+
+.cyber-bg__orb--three {
+  width: 200px;
+  height: 200px;
+  bottom: -60px;
+  right: 30%;
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.cyber-bg__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.cyber-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(167, 139, 250, 0.55);
+  box-shadow: 0 0 6px rgba(139, 92, 246, 0.5);
+}
+
+.cyber-particle--blue {
+  background: rgba(125, 211, 252, 0.55);
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+}
+
+/* VERY subtle scanline texture — barely visible grain over everything */
+.fx-scanlines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(245, 245, 245, 0.028) 0px,
+    rgba(245, 245, 245, 0.028) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* Soft vignette to seat the atmosphere at the edges */
+.fx-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 120% 100% at 50% 40%, transparent 62%, rgba(3, 3, 6, 0.5) 100%);
+}

@@ -1,0 +1,84 @@
+/* Contact form — cyberpunk inputs. Logic untouched:
+   validation, loading, success, 429/502/network states, and the
+   POST /api/contact contract are preserved. Only appearance changed. */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form__field .tech-label {
+  color: var(--color-accent-strong);
+}
+
+.form__input {
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: rgba(7, 7, 12, 0.7);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: 12px;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.form__input::placeholder { color: var(--color-text-faint); }
+
+.form__input:hover { border-color: rgba(139, 92, 246, 0.55); }
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(7, 7, 12, 0.95);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18), 0 0 20px rgba(139, 92, 246, 0.15);
+}
+
+.form__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.form__textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.form__input[aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+
+.form__error {
+  margin: 0;
+  font-size: var(--text-body-sm);
+  line-height: 1.6;
+  color: #ff9d97;
+}
+
+.form__status {
+  margin: 0;
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--color-text);
+  border: var(--border-width) solid rgba(63, 185, 80, 0.45);
+  background: rgba(63, 185, 80, 0.08);
+  border-radius: 12px;
+  padding: var(--space-3) var(--space-4);
+}
+
+.contact-form .btn--primary {
+  align-self: flex-start;
+  min-width: 200px;
+}

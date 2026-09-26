@@ -1,0 +1,264 @@
+/* Animations — cyberpunk motion: typewriter, float, orbit,
+   drift, reveal, hover. All non-essential motion disabled under
+   prefers-reduced-motion. */
+
+:root {
+  --reveal-translate: 14px;
+}
+
+.transition-subtle {
+  transition: color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-premium);
+}
+
+/* Opt-in reveal (JS adds .is-visible). Visible by default; enhances only.
+   Fade + translate + slight blur reduction. */
+.reveal { opacity: 1; }
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-translate));
+  filter: blur(3px);
+  transition: opacity var(--duration-slow) var(--ease-premium),
+    transform var(--duration-slow) var(--ease-premium),
+    filter var(--duration-slow) var(--ease-premium);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Hero entrance — plays once on load */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rise {
+  animation: rise-in var(--duration-slow) var(--ease-premium) both;
+}
+
+.rise--1 { animation-delay: 0.02s; }
+.rise--2 { animation-delay: 0.1s; }
+.rise--3 { animation-delay: 0.18s; }
+.rise--4 { animation-delay: 0.26s; }
+.rise--5 { animation-delay: 0.34s; }
+
+/* Typewriter cursor — thin accent block */
+@keyframes cursor-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  border-radius: 2px;
+  background: var(--color-accent-secondary);
+  box-shadow: 0 0 8px rgba(255, 212, 59, 0.7);
+  animation: cursor-blink 1.05s step-end infinite;
+}
+
+/* Floating tech nodes */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.float-node {
+  animation: float-soft 5s ease-in-out infinite;
+}
+
+.float-node--d1 { animation-delay: -1.2s; animation-duration: 5.6s; }
+.float-node--d2 { animation-delay: -2.4s; animation-duration: 6.4s; }
+.float-node--d3 { animation-delay: -3.1s; animation-duration: 4.8s; }
+.float-node--d4 { animation-delay: -0.6s; animation-duration: 6s; }
+.float-node--d5 { animation-delay: -4s; animation-duration: 5.2s; }
+
+/* Slow orbital rotation for decorative rings */
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.orbit-ring {
+  animation: orbit-spin 36s linear infinite;
+}
+
+.orbit-ring--reverse {
+  animation-direction: reverse;
+  animation-duration: 52s;
+}
+
+/* Particle drift for background dots */
+@keyframes particle-drift {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; }
+  50% { transform: translate3d(6px, -14px, 0); opacity: 1; }
+}
+
+.cyber-particle {
+  animation: particle-drift 7s ease-in-out infinite;
+}
+
+/* Small status pulse — dot only */
+@keyframes status-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.status__dot--live {
+  animation: status-blink 2.4s ease-in-out infinite;
+}
+
+/* ---- Controlled glitch (occasional, never continuous) ----
+   Applied to headings via .glitch[data-text]. The two pseudo
+   layers carry chromatic copies that flicker only inside tiny
+   keyframe windows of a long cycle; the real text is untouched
+   and always readable. */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+.glitch::before {
+  color: #8b5cf6;
+  animation: glitch-shift-a 9s infinite steps(1, end);
+}
+
+.glitch::after {
+  color: #38bdf8;
+  animation: glitch-shift-b 9s infinite steps(1, end);
+}
+
+@keyframes glitch-shift-a {
+  0%, 90.9%, 94.1%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
+  91.5% { opacity: 0.75; transform: translate(-5px, -2px); clip-path: inset(8% 0 58% 0); }
+  92.5% { opacity: 0.75; transform: translate(4px, 1px); clip-path: inset(62% 0 4% 0); }
+  93.5% { opacity: 0.75; transform: translate(-3px, 2px); clip-path: inset(28% 0 42% 0); }
+}
+
+@keyframes glitch-shift-b {
+  0%, 90.9%, 94.1%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
+  92% { opacity: 0.7; transform: translate(5px, 2px); clip-path: inset(48% 0 28% 0); }
+  93% { opacity: 0.7; transform: translate(-4px, -1px); clip-path: inset(12% 0 72% 0); }
+  94% { opacity: 0.7; transform: translate(2px, -2px); clip-path: inset(74% 0 8% 0); }
+}
+
+/* Subtle hover glitch for archive titles (single quick flicker) */
+.glitch-hover { position: relative; display: inline-block; }
+
+.glitch-hover::before,
+.glitch-hover::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch-hover::before { color: #8b5cf6; }
+.glitch-hover::after { color: #38bdf8; }
+
+a:hover .glitch-hover::before,
+.feature:hover .glitch-hover::before {
+  animation: glitch-flick-a 320ms steps(2, end);
+}
+
+a:hover .glitch-hover::after,
+.feature:hover .glitch-hover::after {
+  animation: glitch-flick-b 320ms steps(2, end);
+}
+
+@keyframes glitch-flick-a {
+  0% { opacity: 0.8; transform: translate(-3px, -1px); clip-path: inset(10% 0 60% 0); }
+  50% { opacity: 0.8; transform: translate(3px, 1px); clip-path: inset(60% 0 10% 0); }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes glitch-flick-b {
+  0% { opacity: 0.7; transform: translate(3px, 1px); clip-path: inset(55% 0 20% 0); }
+  50% { opacity: 0.7; transform: translate(-3px, -1px); clip-path: inset(15% 0 65% 0); }
+  100% { opacity: 0; transform: none; }
+}
+
+/* Animated form-panel beam */
+@keyframes panel-beam {
+  0%, 100% { opacity: 0.65; }
+  50% { opacity: 1; }
+}
+
+/* Cursor-follow glow */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.09), rgba(56, 189, 248, 0.04) 45%, transparent 68%);
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.cursor-glow.is-on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal { opacity: 1; transform: none; filter: none; }
+  .rise { animation: none; }
+  .status__dot--live { animation: none; }
+  .float-node { animation: none; }
+  .orbit-ring { animation: none; }
+  .cyber-particle { animation: none; }
+  .typewriter-cursor { animation: none; opacity: 1; }
+  .glitch::before, .glitch::after,
+  .glitch-hover::before, .glitch-hover::after { animation: none; opacity: 0; }
+  .cursor-glow { display: none; }
+  .fx-scanlines { display: none; }
+}
+
+/* Mobile: reduce glitch intensity, keep text crisp */
+@media (max-width: 640px) {
+  @keyframes glitch-shift-a {
+    0%, 90.9%, 94.1%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
+    91.5% { opacity: 0.5; transform: translate(-2px, -1px); clip-path: inset(8% 0 58% 0); }
+    92.5% { opacity: 0.5; transform: translate(2px, 1px); clip-path: inset(62% 0 4% 0); }
+    93.5% { opacity: 0.5; transform: translate(-1px, 1px); clip-path: inset(28% 0 42% 0); }
+  }
+
+  @keyframes glitch-shift-b {
+    0%, 90.9%, 94.1%, 100% { opacity: 0; transform: none; clip-path: inset(0 0 100% 0); }
+    92% { opacity: 0.45; transform: translate(2px, 1px); clip-path: inset(48% 0 28% 0); }
+    93% { opacity: 0.45; transform: translate(-2px, -1px); clip-path: inset(12% 0 72% 0); }
+    94% { opacity: 0.45; transform: translate(1px, -1px); clip-path: inset(74% 0 8% 0); }
+  }
+}

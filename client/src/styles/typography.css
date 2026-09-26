@@ -1,0 +1,124 @@
+/* Typography — confident sans display, clean sans body, mono for metadata only. */
+
+.display {
+  font-family: var(--font-sans);
+  font-size: var(--text-display);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-weight: 800;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+.display--sm {
+  font-family: var(--font-sans);
+  font-size: var(--text-display-sm);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+h1, .h1 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h1);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+h2, .h2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h2);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 750;
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+h3, .h3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 650;
+  color: var(--color-text);
+}
+
+.lead {
+  font-size: var(--text-lead);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+}
+
+.body-lg {
+  font-size: var(--text-body-lg);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+body, .body {
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
+.body-sm {
+  font-size: var(--text-body-sm);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.caption {
+  font-size: var(--text-caption);
+  line-height: 1.6;
+  color: var(--color-text-subtle);
+}
+
+/* Mono only: technical metadata, small labels, tech names, annotations. */
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-tech-label);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+code, .code {
+  font-family: var(--font-mono);
+  font-size: var(--text-code);
+  line-height: 1.6;
+}
+
+pre.code-block {
+  font-family: var(--font-mono);
+  font-size: var(--text-code);
+  line-height: 1.65;
+  background: var(--color-code-bg);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+/* Giant background typography — decorative, aria-hidden in markup. */
+.giant-word {
+  font-family: var(--font-sans);
+  font-size: var(--text-giant);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(168, 180, 197, 0.08);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .display { letter-spacing: -0.03em; line-height: 0.98; }
+}

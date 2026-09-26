@@ -1,0 +1,124 @@
+/* Skill Matrix — domain cards over a subtle matrix grid.
+   No proficiency theater: dashed chips = studying now. */
+
+.stack-section {
+  border-top: var(--border-width) solid var(--color-border);
+  background: radial-gradient(800px 320px at 85% 10%, rgba(56, 189, 248, 0.05), transparent 65%);
+}
+
+.matrix-grid {
+  position: relative;
+}
+
+.matrix-grid::before {
+  content: "";
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.stack-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  grid-column: span 2;
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(170deg, rgba(139, 92, 246, 0.07), rgba(13, 13, 22, 0.7) 55%);
+  padding: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-premium),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+}
+
+.stack-block:nth-child(1),
+.stack-block:nth-child(2) {
+  grid-column: span 3;
+}
+
+.stack-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--space-5);
+  width: 44px;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-blue));
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+.stack-block:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(139, 92, 246, 0.15);
+  background-color: rgba(20, 16, 36, 0.55);
+}
+
+.stack-block__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.stack-block__label {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  text-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+}
+
+.stack-block__meta {
+  color: var(--color-accent-strong);
+  white-space: nowrap;
+}
+
+.stack-block__count {
+  margin: calc(var(--space-3) * -1) 0 0;
+  color: var(--color-text-faint);
+}
+
+.stack-block__chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.5rem;
+}
+
+.stack-section__note { max-width: 64ch; }
+
+@media (max-width: 1024px) {
+  .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stack-block,
+  .stack-block:nth-child(1),
+  .stack-block:nth-child(2) { grid-column: span 1; }
+}
+
+@media (max-width: 640px) {
+  .stack-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+  .stack-block,
+  .stack-block:nth-child(1),
+  .stack-block:nth-child(2) { grid-column: span 1; }
+}

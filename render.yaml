@@ -1,0 +1,21 @@
+# Render blueprint for the portfolio API (`server/` only).
+# No secrets here: secret values are set as environment variables in
+# the Render dashboard (marked sync: false below so Render prompts
+# for them instead of reading a value from this file).
+services:
+  - type: web
+    name: chhuparustam-portfolio-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: CLIENT_ORIGIN
+        value: https://chhuparustam.com.np
+      - key: CONTACT_TO_EMAIL
+        value: chhuparustamkushwaha30@gmail.com
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false

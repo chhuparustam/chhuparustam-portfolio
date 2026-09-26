@@ -1,0 +1,115 @@
+/* Design tokens — CHHUPARUSTAM://PYTHON cyberpunk edition.
+   Single dark theme. Base #07070b; purple/blue atmosphere, Python
+   yellow as a small identity accent. Glow is selective (see
+   --glow-* tokens). All legacy token names are preserved so
+   existing component CSS keeps working. */
+
+:root {
+  /* ---- Color: surfaces & text (cyberpunk base) ---- */
+  --color-bg: #07070b;
+  --color-bg-deep: #050508;
+  --color-surface: #0d0d14;
+  --color-surface-elevated: #14141f;
+  --color-panel: #0d0d16;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a1a1aa;
+  --color-text-subtle: #71717a;
+  --color-text-faint: #52525b;
+  --color-border: #1e1b2e;
+  --color-border-strong: #2e2a4a;
+  --color-code-bg: #0d0d16;
+
+  /* ---- Color: cyberpunk accents ---- */
+  --color-accent: #8b5cf6; /* cyber purple — links, active states */
+  --color-accent-strong: #a78bfa; /* hover / emphasis on dark */
+  --color-accent-ink: #0a0a12; /* text on accent fill */
+  --color-accent-blue: #38bdf8; /* electric blue — atmosphere + gradients */
+  --color-accent-blue-strong: #7dd3fc;
+  --color-accent-secondary: #ffd43b; /* python yellow — tiny identity use only */
+  --color-success: #3fb950;
+  --color-warning: #d29922;
+  --color-danger: #f85149;
+
+  /* ---- Glow (selective — hierarchy support only) ---- */
+  --glow-nav-active: 0 0 12px rgba(139, 92, 246, 0.45);
+  --glow-cta-hover: 0 8px 32px rgba(139, 92, 246, 0.4), 0 2px 12px rgba(56, 189, 248, 0.25);
+  --glow-photo-frame: 0 0 0 1px rgba(139, 92, 246, 0.35), 0 0 48px rgba(139, 92, 246, 0.22),
+    0 0 96px rgba(56, 189, 248, 0.12);
+  --glow-node: 0 0 10px rgba(56, 189, 248, 0.7);
+  --glow-dot-now: 0 0 0 5px rgba(139, 92, 246, 0.18), 0 0 16px rgba(139, 92, 246, 0.55);
+
+  /* ---- Hero background ---- */
+  --hero-grid-color: rgba(139, 92, 246, 0.06);
+  --hero-glow-purple: rgba(139, 92, 246, 0.14);
+  --hero-glow-blue: rgba(56, 189, 248, 0.09);
+
+  /* ---- Color: interaction ---- */
+  --color-focus: var(--color-accent-blue);
+  --color-selection-bg: rgba(139, 92, 246, 0.32);
+
+  /* ---- Typography families ----
+     Sans for display / headings / body. Mono for metadata only. */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* ---- Type scale ---- */
+  --text-display: clamp(3rem, 8.5vw, 6.75rem);
+  --text-display-sm: clamp(2.5rem, 6vw, 4.25rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.75rem, 3vw, 2.5rem);
+  --text-h3: 1.25rem;
+  --text-lead: clamp(1.05rem, 1.6vw, 1.25rem);
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+  --text-tech-label: 0.72rem;
+  --text-code: 0.875rem;
+  --text-giant: clamp(4rem, 12vw, 10rem);
+
+  /* ---- Spacing scale (4px base) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --section-gap: var(--space-32);
+  --section-gap-mobile: var(--space-16);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-gutter: var(--space-6);
+  --container-gutter-mobile: var(--space-4);
+
+  /* ---- Borders & radius ---- */
+  --border-width: 1px;
+  --radius-none: 0px;
+  --radius-sm: 6px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* ---- Motion ---- */
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+  --duration-slow: 480ms;
+  --ease-out: cubic-bezier(0.2, 0, 0.2, 1);
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Breakpoints (reference) ---- */
+  --bp-tablet: 641px;
+  --bp-desktop: 1025px;
+  --bp-wide: 1441px;
+
+  /* ---- Misc ---- */
+  --touch-target: 44px;
+  --nav-height: 68px;
+}

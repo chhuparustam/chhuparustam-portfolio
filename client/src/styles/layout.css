@@ -1,0 +1,67 @@
+/* Layout — container / grid / section / stack / cluster.
+   Sections vary by modifier; base .section stays quiet. */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+  box-sizing: border-box;
+}
+
+.section {
+  padding-block: var(--section-gap);
+  position: relative;
+}
+
+.section__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* 12-column grid on desktop */
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.span-7 { grid-column: span 7; }
+.span-5 { grid-column: span 5; }
+.span-6 { grid-column: span 6; }
+.span-4 { grid-column: span 4; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+.span-3 { grid-column: span 3; }
+.span-9 { grid-column: span 9; }
+
+/* Vertical rhythm */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.stack--tight { gap: var(--space-2); }
+.stack--loose { gap: var(--space-8); }
+
+/* Horizontal groups */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .grid-12 { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .span-7, .span-5, .span-6, .span-4, .span-8, .span-3, .span-9 { grid-column: span 8; }
+}
+
+@media (max-width: 640px) {
+  .container { padding-inline: var(--container-gutter-mobile); }
+  .section { padding-block: var(--section-gap-mobile); }
+  .grid-12 { grid-template-columns: minmax(0, 1fr); gap: var(--space-5); }
+  .span-7, .span-5, .span-6, .span-4, .span-8, .span-12, .span-3, .span-9 { grid-column: span 1; }
+}

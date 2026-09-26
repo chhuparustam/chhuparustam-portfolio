@@ -1,0 +1,8 @@
+/* Social icons — small, currentColor, vertically aligned with
+   their text label. Hover emphasis comes from the parent link. */
+
+.social-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
