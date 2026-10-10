@@ -109,6 +109,7 @@ export default function Hero() {
             </p>
             <div className="hero__ctas rise rise--4">
               <a
+                ref={magneticRef}
                 className="hero__cv"
                 href="/cv.pdf"
                 download="Chhuparustam-Kumar-Kushwaha-CV.pdf"
